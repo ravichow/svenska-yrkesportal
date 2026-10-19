@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Svenska Yrkesportal — Jobbtorget Scala Pilot | Helsingborgs stad</title>
+  
+  <meta name="description" content="Ljudfokuserad, yrkesinriktad och CEFR-kalibrerad språkutveckling för Jobbtorget Scala, Helsingborgs stad.">
+  <meta name="theme-color" content="#76232f">
+  
+  <!-- Favicon and Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  
+    <!-- Helsingborgs stad Officiell Digital Typografi (Roboto & Helsingborg Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Municipal Context Banner -->
+  <header class="municipal-banner" role="banner">
+    <div class="banner-left">
+      <img src="assets/helsingborg_logo.svg" alt="Helsingborgs stad vapen" class="banner-crest-logo" width="22" height="22">
+      <span><strong>Helsingborgs stad</strong></span>
+      <span class="banner-pill">Jobbtorget Scala Pilot</span>
+    </div>
+    <div class="banner-right">
+      <a href="https://innovation.helsingborg.se/initiativ/utbildningsplattform-for-arbetsinriktad-sprakutveckling/" target="_blank" rel="noopener noreferrer">
+        Innovationsinitiativ ↗
+      </a>
+    </div>
+  </header>
+
+  <!-- Streak Encouragement Modal -->
+  <div id="streak-modal" class="streak-modal hidden" role="dialog" aria-modal="true" aria-labelledby="streak-modal-title">
+    <div class="streak-modal-backdrop" id="streak-backdrop"></div>
+    <div class="streak-modal-card">
+      <div class="streak-modal-top">
+        <div class="streak-flame-circle">🔥</div>
+        <button type="button" class="streak-modal-close" id="streak-close-btn" aria-label="Stäng">✕</button>
+      </div>
+      <h3 id="streak-modal-title" class="streak-modal-title">3 dagars träningsstreak!</h3>
+      <p class="streak-modal-desc">
+        Du har övat svenska <strong>3 dagar i rad</strong>.<br>
+        Totalt <strong><span id="streak-words-count">2</span> yrkesord</strong> avklarade hittills!
+      </p>
+      <div class="streak-quote-box">
+        💡 <em>"Kontinuitet är nyckeln till att nå CEFR A2-nivå och få jobb i Helsingborg."</em>
+      </div>
+      <button type="button" class="action-btn btn-primary streak-modal-ok-btn" id="streak-ok-btn">
+        Fortsätt öva 👍
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Application Main Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-area">
+        <div class="brand-logo-frame" title="Helsingborgs stad officiella logotyp">
+          <img src="assets/helsingborg_logo.svg" alt="Helsingborgs stad" class="brand-official-logo" width="40" height="40">
+        </div>
+        <div class="brand-titles">
+          <h1>Svenska Yrkesportal</h1>
+          <p class="brand-tagline">Jobbtorget Scala · Helsingborgs stad</p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <!-- Native Language Support Selector -->
+        <div class="lang-support-wrapper">
+          <select id="support-lang-select" class="control-btn lang-select-btn" title="Välj stödspråk för ordförråd">
+            <option value="none">🌐 Stödspråk: Inget (Endast svenska)</option>
+            <option value="ar">🇸🇦 Arabiska (العربية)</option>
+            <option value="so">🇸🇴 Somaliska (Af-Soomaali)</option>
+            <option value="ti">🇪🇷 Tigrinja (ትግርኛ)</option>
+            <option value="uk">🇺🇦 Ukrainska (Українська)</option>
+            <option value="en">🇬🇧 Engelska (English)</option>
+          </select>
+        </div>
+
+        <!-- Audio Speed Controller -->
+        <button id="speed-btn" class="control-btn speed-toggle-btn is-slow" title="Ändra ljudhastighet">
+          <span>🔊</span>
+          <span id="speed-label">Långsamt (0.8x)</span>
+        </button>
+
+        <!-- Streak Tracker Button -->
+        <button type="button" class="streak-pill" id="streak-pill-btn" aria-label="Visa träningsstreak" title="Klicka för att se din träningsstreak">
+          <span>🔥</span>
+          <span id="streak-count">3</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Streak Encouragement Modal -->
+  <div id="streak-modal" class="streak-modal hidden" role="dialog" aria-modal="true" aria-labelledby="streak-modal-title">
+    <div class="streak-modal-backdrop" id="streak-backdrop"></div>
+    <div class="streak-modal-card">
+      <div class="streak-modal-top">
+        <div class="streak-flame-circle">🔥</div>
+        <button type="button" class="streak-modal-close" id="streak-close-btn" aria-label="Stäng">✕</button>
+      </div>
+      <h3 id="streak-modal-title" class="streak-modal-title">3 dagars träningsstreak!</h3>
+      <p class="streak-modal-desc">
+        Du har övat svenska <strong>3 dagar i rad</strong>.<br>
+        Totalt <strong><span id="streak-words-count">2</span> yrkesord</strong> avklarade hittills!
+      </p>
+      <div class="streak-quote-box">
+        💡 <em>"Kontinuitet är nyckeln till att nå CEFR A2-nivå och få jobb i Helsingborg."</em>
+      </div>
+      <button type="button" class="action-btn btn-primary streak-modal-ok-btn" id="streak-ok-btn">
+        Fortsätt öva 👍
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Main Navigation Tabs -->
+  <nav class="main-nav-bar" aria-label="Huvudmeny">
+    <div class="nav-tabs-wrapper" role="tablist">
+      <button class="nav-tab active" role="tab" aria-selected="true" data-target="practice" id="tab-btn-practice">
+        <span>📖 Övningsläge</span>
+        <span class="nav-tab-badge">Öppet</span>
+      </button>
+      <button class="nav-tab" role="tab" aria-selected="false" data-target="test" id="tab-btn-test">
+        <span>🔒 Testläge (CEFR)</span>
+        <span class="nav-tab-badge">Coach</span>
+      </button>
+      <button class="nav-tab" role="tab" aria-selected="false" data-target="coach" id="tab-btn-coach">
+        <span>📋 Resultatkort</span>
+        <span class="nav-tab-badge">QR</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main View Container -->
+  <main class="main-layout" id="main-content">
+
+    <!-- 1. PRACTICE MODE VIEW -->
+    <section id="tab-practice" class="tab-view" role="tabpanel" aria-labelledby="tab-btn-practice">
+      
+      <!-- Track Selector Grid -->
+      <div class="track-selector-section">
+        <h2 class="section-label">Välj yrkesinriktning</h2>
+        <div class="track-grid" id="track-selector">
+          <!-- Rendered via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Vocational Flashcards and Content -->
+      <div id="vocational-container">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </section>
+
+    <!-- 2. TEST MODE VIEW (COACH GATED) -->
+    <section id="tab-test" class="tab-view hidden" role="tabpanel" aria-labelledby="tab-btn-test">
+      <div class="test-container">
+
+        <!-- Locked Screen (PIN Entry) -->
+        <div id="test-locked-view" class="coach-locked-card">
+          <div class="locked-icon-shield">🔒</div>
+          <h2>Testläge: CEFR-diagnos</h2>
+          <p class="locked-description">
+            Detta prov är kalibrerat mot CEFR-skalan (A1.1 till A2.2) och används av språkcoacher på Jobbtorget Scala för att mäta stegförflyttning och säkerställa att deltagaren förstår arbetsinstruktioner.
+          </p>
+
+          <div class="pin-entry-box">
+            <label for="coach-pin-input" class="pin-label">Ange språkcoachens 6-siffriga kod:</label>
+            <div class="pin-input-group">
+              <input type="text" id="coach-pin-input" class="pin-input" placeholder="SCALA10" maxlength="8" autocomplete="off" autocorrect="off">
+              <button id="pin-submit-btn" class="pin-submit-btn">Lås upp</button>
+            </div>
+            <p id="pin-error" class="pin-error-msg"></p>
+          </div>
+
+          <div class="demo-coach-helper">
+            💡 <strong>För språkcoacher:</strong> Provkoden för piloten är <button type="button" class="quick-pin-fill">SCALA10</button>.
+          </div>
+        </div>
+
+        <!-- Active Question Screen -->
+        <div id="test-active-view" class="hidden">
+          <!-- Rendered dynamically by JavaScript -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. COACH RESULT CARD & QR CODE VIEW -->
+    <section id="tab-coach" class="tab-view hidden" role="tabpanel" aria-labelledby="tab-btn-coach">
+      <div class="coach-section-wrap">
+        
+        <div id="coach-card-container">
+          <!-- Rendered dynamically by JavaScript -->
+        </div>
+
+        <!-- Option A: Coach Gate (Locked State) -->
+        <div id="coach-locked-gate" class="coach-locked-gate">
+          <div class="coach-gate-card">
+            <div class="coach-gate-header">
+              <span class="gate-icon">🔒</span>
+              <div class="gate-text-col">
+                <h3 class="gate-title">Språkcoach-behörighet (Scala)</h3>
+                <p class="gate-subtitle">Lås upp för att kopiera bedömningsunderlag till Scala journalsystem samt anpassa CEFR-gränser.</p>
+              </div>
+            </div>
+            <div class="coach-gate-input-row">
+              <input type="password" id="coach-gate-pin-input" class="pin-input" placeholder="SCALA10" maxlength="10" autocomplete="off">
+              <button type="button" id="coach-gate-unlock-btn" class="action-btn btn-primary pin-submit-btn">
+                Lås upp coach-läge
+              </button>
+            </div>
+            <p id="coach-gate-error" class="pin-error-msg hidden"></p>
+            <p class="coach-gate-hint">💡 <strong>För språkcoacher:</strong> Ange provkod <button type="button" class="quick-coach-fill">SCALA10</button> för behörighet.</p>
+          </div>
+        </div>
+
+        <!-- Option A: Coach Tools (Unlocked State) -->
+        <div id="coach-unlocked-tools" class="coach-unlocked-tools hidden">
+          <div class="coach-unlocked-badge-bar">
+            <span class="coach-status-pill">✅ Inloggad som Språkcoach / Handläggare</span>
+            <button type="button" id="coach-lock-btn" class="lock-test-pill-btn">🔒 Lås coach-verktyg</button>
+          </div>
+
+          <div class="coach-actions-bar">
+            <button id="copy-journal-btn" class="action-btn btn-primary">
+              📋 Kopiera till journalsystem (Scala)
+            </button>
+            <button id="reset-data-btn" class="action-btn btn-secondary">
+              🔄 Återställ prov & börja om
+            </button>
+          </div>
+
+          <p id="copy-feedback" class="feedback-msg hidden"></p>
+
+          <!-- Coach Settings Panel (Adjust CEFR Cutoffs & PIN) -->
+          <div class="coach-settings-panel">
+            <button type="button" class="coach-settings-toggle" id="coach-settings-toggle" aria-expanded="false">
+              <span>⚙️ Språkcoach-inställningar: Anpassa CEFR-gränser & PIN</span>
+              <span id="settings-toggle-icon">▼</span>
+            </button>
+            
+            <div class="coach-settings-body hidden" id="coach-settings-body">
+              <p class="settings-intro">
+                Här kan språkcoacher på Jobbtorget Scala anpassa tröskelvärdena (%) för CEFR-nivåerna samt ändra provkoden efter verksamhetens krav.
+              </p>
+
+              <div class="settings-form-grid">
+                <div class="setting-item">
+                  <label for="cutoff-a22"><strong>Nivå A2.2 (Säker yrkeskommunikation):</strong></label>
+                  <div class="setting-input-wrap">
+                    <input type="number" id="cutoff-a22" min="50" max="100" value="85">
+                    <span class="unit-tag">% eller högre</span>
+                  </div>
+                </div>
+
+                <div class="setting-item">
+                  <label for="cutoff-a21"><strong>Nivå A2.1 (Självständig yrkesvardag):</strong></label>
+                  <div class="setting-input-wrap">
+                    <input type="number" id="cutoff-a21" min="30" max="90" value="65">
+                    <span class="unit-tag">% eller högre</span>
+                  </div>
+                </div>
+
+                <div class="setting-item">
+                  <label for="cutoff-a12"><strong>Nivå A1.2 (Grundläggande arbetsförståelse):</strong></label>
+                  <div class="setting-input-wrap">
+                    <input type="number" id="cutoff-a12" min="20" max="70" value="40">
+                    <span class="unit-tag">% eller högre</span>
+                  </div>
+                  <p class="setting-subnote">(Resultat under denna gräns klassas som A1.1 Nybörjarnivå)</p>
+                </div>
+
+                <div class="setting-item">
+                  <label for="coach-custom-pin"><strong>Aktiv provkod för deltagare:</strong></label>
+                  <div class="setting-input-wrap">
+                    <input type="text" id="coach-custom-pin" maxlength="10" value="SCALA10" class="pin-edit-input">
+                  </div>
+                </div>
+              </div>
+
+              <div class="settings-actions">
+                <button type="button" class="action-btn btn-primary" id="save-settings-btn">
+                  💾 Spara coach-inställningar
+                </button>
+                <button type="button" class="action-btn btn-secondary" id="reset-defaults-btn">
+                  ↺ Återställ till standard (Skolverket/CEFR)
+                </button>
+              </div>
+              <p id="settings-saved-feedback" class="feedback-msg hidden"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Application Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div>
+        <strong>Svenska Yrkesportal</strong> — Anpassad för Helsingborgs stads pilotprojekt med Jobbtorget Scala.
+      </div>
+      <div>
+        100% lokal datalagring i webbläsaren. Följer GDPR och kommunala integritetsprinciper.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/qrcode.min.js"></script>
+  <script src="js/data-vocational.js"></script>
+  <script src="js/data-test.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
